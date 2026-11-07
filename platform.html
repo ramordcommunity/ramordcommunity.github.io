@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ramord — Platform</title>
+  <meta name="description" content="Ramord Community — Platform uygulamaları." />
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet" />
+  <style>
+    html, body { margin: 0; padding: 0; background: #07130f; color: #fff; overflow-x: hidden; }
+    body.is-booting .nav,
+    body.is-booting .pmain,
+    body.is-booting .cursor,
+    body.is-booting .beams,
+    body.is-booting .progress { opacity: 0 !important; pointer-events: none !important; }
+  </style>
+  <script>
+    try {
+      var saved = localStorage.getItem("theme");
+      document.documentElement.dataset.theme = (saved === "light" || saved === "dark") ? saved : "dark";
+    } catch (e) {
+      document.documentElement.dataset.theme = "dark";
+    }
+  </script>
+  <script type="module" crossorigin src="/assets/platform-B97XRGMd.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="modulepreload" crossorigin href="/assets/common-BO79itWP.js">
+  <link rel="stylesheet" crossorigin href="/assets/common-CdAbFYo3.css">
+</head>
+<body class="is-booting is-platform">
+  <div class="progress"></div>
+  <div class="cursor"></div>
+  <canvas class="fx" id="fx"></canvas>
+
+  <header class="nav" id="topNav">
+    <div class="nav__side">
+      <a href="/" class="nav-back-btn" id="navBack" aria-label="Ana sayfa">
+        <svg viewBox="0 0 20 20" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 4L6 10L12 16"/>
+        </svg>
+        <span data-i18n="home">Ana sayfa</span>
+      </a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-label="Menü">
+        <i class="burger__lines" aria-hidden="true"></i>
+        <span data-i18n="menu">Menü</span>
+      </button>
+    </div>
+
+    <div class="nav__brand-wrap" id="navBrandWrap">
+      <a href="/" class="brand brand--nav" id="navBrand" aria-label="Ramord Community">
+        <i class="brand__logo" aria-hidden="true"></i>
+        <span class="brand__bar"></span>
+        <span class="brand__words">
+          <span class="brand__word" data-word="ramord"></span>
+          <span class="brand__word brand__word--sub" data-word="community"></span>
+        </span>
+      </a>
+    </div>
+
+    <div class="nav__side nav__side--r">
+      <div class="top-lang" id="topLang" role="group" aria-label="Dil seçimi">
+        <button class="top-lang__btn" id="langTrigger" type="button" aria-expanded="false" aria-haspopup="listbox" aria-label="Dil seçimi">
+          <span class="top-lang__cur">TR</span>
+          <svg class="top-lang__arrow" viewBox="0 0 10 6" width="9" height="6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M1 1L5 5L9 1"/>
+          </svg>
+        </button>
+        <div class="top-lang__menu" id="langDropdown" role="listbox">
+          <button type="button" data-lang="tr" class="top-lang__opt">Türkçe</button>
+          <button type="button" data-lang="en" class="top-lang__opt">English</button>
+          <button type="button" data-lang="es" class="top-lang__opt">Español</button>
+          <button type="button" data-lang="de" class="top-lang__opt">Deutsch</button>
+        </div>
+      </div>
+      <button class="theme" id="theme" type="button" aria-label="Koyu modu aç/kapat">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">
+          <circle class="sun" cx="12" cy="12" r="4.2"/>
+          <g class="rays"><path d="M12 2v2.4M12 19.6V22M2 12h2.4M19.6 12H22M4.9 4.9l1.7 1.7M17.4 17.4l1.7 1.7M4.9 19.1l1.7-1.7M17.4 6.6l1.7-1.7"/></g>
+          <path class="moon" d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/>
+        </svg>
+      </button>
+      <button class="theme fs-btn" id="fullscreen" type="button" aria-label="Tam ekran">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path class="fs-enter" d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/>
+          <path class="fs-exit" d="M9 4v5H4M15 4v5h5M9 20v-5H4M15 20v-5h5"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <canvas class="water" id="water"></canvas>
+  <div class="beams" id="beams" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+  <canvas class="dust" id="dust"></canvas>
+
+  <main class="pmain">
+    <section class="ch1" id="ch1">
+      <div class="ch1__icon" id="pIcon"></div>
+      <div class="ch1__text">
+        <h1 class="ch1__title" id="pTitle"></h1>
+        <p class="ch1__desc" id="pDesc"></p>
+      </div>
+      <div class="ch1__hint"><i></i><span data-i18n="scroll">Kaydır</span></div>
+    </section>
+
+    <section class="ch2" id="ch2">
+      <div class="ch2__mobile-header" id="ch2Head">
+        <div class="ch2__icon-badge" id="mIcon"></div>
+        <div class="ch2__meta">
+          <h2 id="mTitle"></h2>
+          <p id="mDesc"></p>
+        </div>
+      </div>
+      <div id="list"></div>
+      <p class="empty" id="empty" data-i18n="noapps" hidden>Bu platformda henüz uygulama bulunmuyor.</p>
+    </section>
+
+    <section class="stage" id="platformlar"></section>
+  </main>
+
+  <div class="warp is-in"></div>
+</body>
+</html>

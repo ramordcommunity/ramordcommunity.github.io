@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Ramord — Yönetim Paneli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Marcellus&display=swap" rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/admin-DoiyhhWC.js"></script>
+  <link rel="modulepreload" crossorigin href="/assets/modulepreload-polyfill-B5Qt9EMX.js">
+  <link rel="stylesheet" crossorigin href="/assets/admin-Ckw6jQNt.css">
+</head>
+<body>
+  <section class="ad-login" id="login">
+    <form class="ad-card ad-login__box" id="loginForm">
+      <h1 class="ad-title">ramord <span>/ admin</span></h1>
+      <input type="password" id="pw" placeholder="Admin Şifresi" autocomplete="current-password" required />
+      <button type="submit">Giriş Yap</button>
+      <p class="ad-err" id="loginErr"></p>
+    </form>
+  </section>
+
+  <main class="ad-app" id="app" hidden>
+    <header class="ad-head">
+      <h1 class="ad-title">ramord <span>/ başvurular</span></h1>
+      <div class="ad-head__r">
+        <button class="ad-ghost" id="openPwModal">Şifre Değiştir</button>
+        <button class="ad-ghost" id="refresh">Yenile</button>
+        <button class="ad-ghost" id="logout">Çıkış</button>
+      </div>
+    </header>
+    <nav class="ad-tabs" id="tabs">
+      <button data-f="all" class="is-on">Tümü <b id="c-all">0</b></button>
+      <button data-f="new">Yeni <b id="c-new">0</b></button>
+      <button data-f="read">İncelendi <b id="c-read">0</b></button>
+      <button data-f="done">Cevaplandı <b id="c-done">0</b></button>
+    </nav>
+    <div class="ad-list" id="list"></div>
+  </main>
+
+  <div class="ad-modal" id="pwModal" hidden>
+    <div class="ad-modal__back" id="closePwModal"></div>
+    <form class="ad-card ad-modal__card" id="pwForm">
+      <h2 class="ad-title">Şifre <span>Değiştir</span></h2>
+      <input type="password" id="oldPw" placeholder="Mevcut Şifre" required autocomplete="current-password" />
+      <input type="password" id="newPw" placeholder="Yeni Şifre (En az 10 karakter)" required autocomplete="new-password" minlength="10" />
+      <input type="password" id="newPw2" placeholder="Yeni Şifre Tekrar" required autocomplete="new-password" minlength="10" />
+      <div class="ad-actions">
+        <button type="submit">Kaydet</button>
+        <button type="button" class="ad-ghost" id="cancelPw">İptal</button>
+      </div>
+      <p class="ad-err" id="pwErr"></p>
+      <p class="ad-ok" id="pwOk" hidden>Şifre başarıyla güncellendi!</p>
+    </form>
+  </div>
+
+</body>
+</html>
